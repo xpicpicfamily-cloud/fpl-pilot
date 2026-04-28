@@ -113,7 +113,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
 .empty{text-align:center;padding:40px 20px;color:var(--text3)}.empty .icon{font-size:48px;margin-bottom:12px;opacity:.4}.empty p{font-size:14px;line-height:1.6}
 #toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:10px 20px;font-size:13px;font-family:var(--mono);opacity:0;transition:all .3s;z-index:200;white-space:nowrap;pointer-events:none;max-width:90vw}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
+ 
 /* ── VOCAL HERO ── */
 .vocal-hero{display:flex;flex-direction:column;align-items:center;padding:28px 20px 20px}
 .mic-btn{width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#1a2d50,#0a1020);border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:34px;transition:all .25s;box-shadow:0 0 0 0 rgba(74,158,255,0)}
@@ -133,7 +133,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
 .example-card:active{background:var(--surface)}
 .example-card .ex-label{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--text3);font-family:var(--mono);text-transform:uppercase;margin-bottom:4px}
 .example-card .ex-text{font-size:14px;color:var(--text2)}
-
+ 
 /* ── VOCAL FULLSCREEN OVERLAY ── */
 #vo{position:fixed;inset:0;background:rgba(7,12,26,.97);z-index:180;display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center}
 #vo.show{display:flex}
@@ -157,7 +157,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
 .vo-thinking.show{display:flex}
 .vo-thinking .spinner{border-top-color:var(--purple)}
 .vo-thinking p{font-size:13px;color:var(--text3);font-family:var(--mono)}
-
+ 
 /* ── SETTINGS MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(7,12,26,.85);z-index:150;display:none;align-items:flex-end;justify-content:center}
 .modal-overlay.show{display:flex}
@@ -169,7 +169,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
 </head>
 <body>
 <div id="app">
-
+ 
 <!-- HEADER -->
 <div class="hdr">
   <div>
@@ -181,7 +181,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     <div class="icon-btn" onclick="openSettings()">⚙️</div>
   </div>
 </div>
-
+ 
 <!-- TABS -->
 <div class="tabs">
   <div class="tab active" onclick="goTab('plans')">Plans</div>
@@ -189,16 +189,16 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
   <div class="tab" onclick="goTab('aeronefs')">Aéronefs</div>
   <div class="tab" onclick="goTab('aide')">Aide</div>
 </div>
-
+ 
 <!-- ════ PLANS ════ -->
 <div class="screen active" id="screen-plans">
   <div id="plans-list"><div class="empty"><div class="icon">📋</div><p>Aucun plan pour l'instant.<br>Utilisez <b>+ Nouveau</b> pour créer un plan.</p></div></div>
   <div class="pb"></div>
 </div>
-
+ 
 <!-- ════ NOUVEAU ════ -->
 <div class="screen" id="screen-nouveau">
-
+ 
   <!-- VOCAL HERO -->
   <div class="vocal-hero">
     <div class="mic-btn" id="mic-main" onclick="startVoice()">🎙️</div>
@@ -218,7 +218,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     </div>
   </div>
   <div class="divider"></div>
-
+ 
   <div class="step-hdr">
     <div class="step-num">1</div>
     <div><div class="step-title">Aéronef</div><div class="step-sub">Sélectionnez l'appareil</div></div>
@@ -226,12 +226,12 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
   <div id="ac-select-list"></div>
   <button class="btn btn-outline" onclick="goTab('aeronefs')" style="margin-bottom:20px">+ Ajouter un aéronef</button>
   <div class="divider"></div>
-
+ 
   <div class="step-hdr">
     <div class="step-num">2</div>
     <div><div class="step-title">Paramètres du vol</div><div class="step-sub">Cases 7, 8, 13, 15, 16</div></div>
   </div>
-
+ 
   <div class="section">
     <div class="section-title">Règles de vol</div>
     <div class="rule-sel">
@@ -242,7 +242,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     </div>
     <div id="rule-hint" class="hint">VFR pur → dépôt Olivia/DGAC</div>
   </div>
-
+ 
   <div class="section">
     <div class="section-title">Départ</div>
     <div class="row2">
@@ -261,7 +261,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
       <input type="date" id="f_date">
     </div>
   </div>
-
+ 
   <div class="section">
     <div class="section-title">Route</div>
     <div class="row2">
@@ -280,7 +280,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
       <div class="hint">VFR : DCT · IFR : waypoints ICAO · Mixte Y/Z : IFR DCT WPT/N0110VFR</div>
     </div>
   </div>
-
+ 
   <div class="section">
     <div class="section-title">Destination</div>
     <div class="row2">
@@ -307,7 +307,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
       </div>
     </div>
   </div>
-
+ 
   <div class="section">
     <div class="section-title">Case 19 — Dotations</div>
     <div class="row3">
@@ -335,7 +335,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
       </div>
     </div>
   </div>
-
+ 
   <div class="section">
     <div class="section-title">Case 18 <span class="badge-auto">auto-générée</span></div>
     <div class="card" id="fir-card" style="display:none">
@@ -360,12 +360,12 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     </div>
     <div id="c18-preview" class="fpl-box" style="display:none"></div>
   </div>
-
+ 
   <div class="section">
     <div class="section-title">Génération & Dépôt</div>
     <button class="btn btn-primary" onclick="generateFPL()">⚙️ Générer le FPL</button>
   </div>
-
+ 
   <div id="fpl-preview-section" style="display:none">
     <div class="section-title">Message OACI</div>
     <div class="fpl-box" id="fpl-preview"></div>
@@ -388,7 +388,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
   </div>
   <div class="pb"></div>
 </div>
-
+ 
 <!-- ════ AÉRONEFS ════ -->
 <div class="screen" id="screen-aeronefs">
   <div id="aeronefs-list"></div>
@@ -415,7 +415,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
   </div>
   <div class="pb"></div>
 </div>
-
+ 
 <!-- ════ AIDE ════ -->
 <div class="screen" id="screen-aide">
   <div class="section-title">Commande vocale IA</div>
@@ -449,9 +449,9 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
   </div>
   <div class="pb"></div>
 </div>
-
+ 
 </div><!-- #app -->
-
+ 
 <!-- ════ VOCAL OVERLAY ════ -->
 <div id="vo">
   <div class="vo-title" id="vo-title">Je vous écoute…</div>
@@ -467,7 +467,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
   </div>
   <button class="vo-stop" onclick="stopVoice()">■ Arrêter</button>
 </div>
-
+ 
 <!-- ════ SETTINGS ════ -->
 <div class="modal-overlay" id="settings-modal">
   <div class="modal">
@@ -489,9 +489,9 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     <button class="btn btn-primary" onclick="saveSettings()" style="margin-top:12px">💾 Sauvegarder</button>
   </div>
 </div>
-
+ 
 <div id="toast"></div>
-
+ 
 <script>
 // ════════════════════════════════════════════════════════
 // BASE AÉRODROMES (coord. pour calculs EET + ALTN auto)
@@ -525,7 +525,7 @@ const AP={
   EGCC:{n:"Manchester",lat:53.354,lon:-2.275},EIDW:{n:"Dublin",lat:53.421,lon:-6.270},
   LOWS:{n:"Salzburg",lat:47.793,lon:13.004},LOWW:{n:"Vienna",lat:48.110,lon:16.570},
 };
-
+ 
 const FIR_DB={
   LF:{fir:"LFFF",name:"Paris FIR"},EB:{fir:"EBBU",name:"Brussels FIR"},
   EH:{fir:"EHAA",name:"Amsterdam FIR"},ED:{fir:"EDGG",name:"Langen FIR"},
@@ -538,12 +538,12 @@ const FIR_DB={
   LT:{fir:"LTAA",name:"Ankara FIR"},
 };
 const BREST_P=["LFR","LFB","LFE","LFK","LFM","LFN","LFT"];
-
+ 
 // ════════════════════════════════════════════════════════
 // STATE
 // ════════════════════════════════════════════════════════
 let S={aircraft:[],plans:[],selAC:null,rule:'V',genFPL:null,pilot:{name:'',tel:''},ar:{user:'',pass:''},apiKey:''};
-
+ 
 // ════════════════════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════════════════════
@@ -577,7 +577,7 @@ function save(){
     localStorage.setItem('fplpilot3',JSON.stringify(d));
   }catch(e){console.warn('Save error:',e);}
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // SETTINGS
 // ════════════════════════════════════════════════════════
@@ -593,7 +593,7 @@ function saveSettings(){
   if(S.ar.pass)$('ar_pass').value=S.ar.pass;
   closeSettings();showToast('✅ Paramètres sauvegardés');
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // NAV
 // ════════════════════════════════════════════════════════
@@ -605,7 +605,7 @@ function goTab(t){
   if(t==='nouveau')renderACSelector();
   if(t==='aeronefs')renderAeronefsList();
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // GEO UTILS
 // ════════════════════════════════════════════════════════
@@ -623,7 +623,7 @@ function nearestAP(lat,lon,exclude=[]){
   }
   return best;
 }
-
+ 
 function getGPS(){
   if(!navigator.geolocation)return;
   navigator.geolocation.getCurrentPosition(pos=>{
@@ -636,7 +636,7 @@ function getGPS(){
     }
   },()=>{},{timeout:8000,maximumAge:60000});
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // CHAMPS AUTO
 // ════════════════════════════════════════════════════════
@@ -663,7 +663,7 @@ function onAdesChange(){
   computeFIR();
 }
 function onRouteChange(){computeFIR();}
-
+ 
 function calcEET(){
   const adep=$('f_adep').value.trim(),ades=$('f_ades').value.trim();
   if(adep.length<4||ades.length<4)return;
@@ -675,7 +675,7 @@ function calcEET(){
   const el=$('f_eet');el.value=hh+mm;el.classList.add('ac-filled');
   $('eet-hint').textContent='Auto: '+Math.round(dist)+' NM @ '+kts+'kt = '+hh+'h'+mm;
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // AÉRONEFS
 // ════════════════════════════════════════════════════════
@@ -739,7 +739,7 @@ function delAC(id){
   if(S.selAC?.id==id)S.selAC=null;
   save();renderAeronefsList();renderACSelector();
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // RÈGLE DE VOL
 // ════════════════════════════════════════════════════════
@@ -749,7 +749,7 @@ function selRule(el){
   const h={V:'VFR pur → dépôt Olivia/DGAC',I:'IFR → dépôt Autorouter (IFPS Eurocontrol)',Y:'IFR puis VFR → dépôt Autorouter',Z:'VFR puis IFR → dépôt Autorouter'};
   $('rule-hint').textContent=h[S.rule];
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // FIR
 // ════════════════════════════════════════════════════════
@@ -771,7 +771,7 @@ function computeFIR(){
   $('fir-list-out').innerHTML=firs.map(f=>`<div class="fir-tag">${f.fir}<small>${f.name}</small></div>`).join('');
   updateC18(firs);
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // CASE 18
 // ════════════════════════════════════════════════════════
@@ -797,7 +797,7 @@ function updateC18(firs){
   if(c18&&c18!=='0'){el.style.display='block';el.innerHTML='<span style="color:var(--text3)">CASE 18: </span><span style="color:var(--amber)">'+c18+'</span>';}
   else el.style.display='none';
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // GENERATE FPL
 // ════════════════════════════════════════════════════════
@@ -832,7 +832,7 @@ function generateFPL(){
   $('fpl-preview-section').scrollIntoView({behavior:'smooth'});
   showToast('✅ FPL généré');
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // DÉPÔT
 // ════════════════════════════════════════════════════════
@@ -868,11 +868,11 @@ async function filePlan(){
   }catch(err){lo.classList.remove('show');er.classList.add('show');$('result-err-msg').textContent=err.message;showToast('❌ '+err.message.slice(0,40));}
   bf.disabled=false;
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // PLANS LIST
 // ════════════════════════════════════════════════════════
-
+ 
 // Calcule l'heure EOBT réelle d'un plan (date vol + heure EOBT)
 function planEOBT(p){
   try{
@@ -886,7 +886,7 @@ function planEOBT(p){
     return base;
   }catch(e){return new Date(p.date);}
 }
-
+ 
 function renderPlans(){
   const el=$('plans-list');
   const now=new Date();
@@ -897,18 +897,18 @@ function renderPlans(){
     if(p.status==='cancelled') return eobt>now; // visible jusqu'à l'EOBT même annulé
     return eobt>now || p.status==='filed' || p.status==='local'; // actifs visibles
   });
-
+ 
   if(!visible.length){
     el.innerHTML='<div class="empty"><div class="icon">📋</div><p>Aucun plan actif.<br>Les plans expirés sont archivés automatiquement.</p></div>';
     return;
   }
-
+ 
   el.innerHTML=visible.map((p)=>{
     const realIdx=S.plans.indexOf(p);
     const eobt=planEOBT(p);
     const eobtStr=eobt.toLocaleDateString('fr-FR',{day:'2-digit',month:'short'})+' '+eobt.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
     const ruleLabel={V:'VFR',I:'IFR',Y:'Mixte Y',Z:'Mixte Z'}[p.rule]||p.rule;
-
+ 
     let badge, cancelBtn='';
     if(p.status==='cancelled'){
       badge='<span class="badge badge-err">✕ ANNULÉ</span>';
@@ -919,9 +919,9 @@ function renderPlans(){
       badge='<span class="badge badge-info">● LOCAL</span>';
       cancelBtn=`<button class="btn btn-outline" style="flex:1;padding:8px;font-size:12px;color:var(--red);border-color:var(--red)" onclick="cancelPlan(${realIdx})">✕ Annuler</button>`;
     }
-
+ 
     const cardStyle=p.status==='cancelled'?'opacity:.6;border-color:rgba(255,95,95,.2)':'';
-
+ 
     return`<div class="card" style="${cardStyle}">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
         <div style="font-family:var(--mono);font-size:16px;font-weight:700">${p.adep} → ${p.ades}</div>${badge}
@@ -937,14 +937,14 @@ function renderPlans(){
       </div></div>`;
   }).join('');
 }
-
+ 
 function copyPlan(i){try{navigator.clipboard.writeText(S.plans[i].fpl);showToast('📋 FPL copié !');}catch(e){}}
-
+ 
 async function cancelPlan(i){
   const p=S.plans[i];
   if(!p)return;
   if(!confirm(`Annuler le plan ${p.adep} → ${p.ades} ?`))return;
-
+ 
   // Si plan IFR/Y/Z déposé via Autorouter, tenter l'annulation API
   if(p.status==='filed'&&p.id&&p.id!=='—'&&['I','Y','Z'].includes(p.rule)){
     const user=$('ar_user').value.trim()||S.ar.user;
@@ -969,17 +969,17 @@ async function cancelPlan(i){
       showToast('⚠️ Identifiants Autorouter manquants — annulé localement');
     }
   }
-
+ 
   // Marquer annulé localement dans tous les cas
   S.plans[i].status='cancelled';
   save();renderPlans();
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // ████  COMMANDE VOCALE + IA CLAUDE  ████
 // ════════════════════════════════════════════════════════
 let recog=null,isListening=false;
-
+ 
 function startVoice(){
   if(isListening){stopVoice();return;}
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -1013,7 +1013,7 @@ function startVoice(){
   recog.onerror=e=>{showToast('Micro: '+e.error);stopVoice();};
   recog.start();
 }
-
+ 
 function stopVoice(){
   try{if(recog)recog.stop();}catch(e){}
   isListening=false;
@@ -1021,13 +1021,13 @@ function stopVoice(){
   $('mic-main').classList.remove('listening','thinking','ok');
   $('mic-label').textContent='Appuyez · parlez naturellement';
 }
-
+ 
 function tryExample(cmd){
   $('mic-transcript').textContent=cmd;$('mic-transcript').classList.add('show');
   $('ai-reply').textContent='⏳ Analyse…';$('ai-reply').classList.add('show');
   runAI(cmd);
 }
-
+ 
 // ─── APPEL API CLAUDE ────────────────────────────────
 async function runAI(transcript){
   if(!S.apiKey){
@@ -1037,16 +1037,16 @@ async function runAI(transcript){
     showToast('⚠️ Clé API requise (⚙️ Paramètres)');return;
   }
   $('mic-transcript').textContent=transcript;$('mic-transcript').classList.add('show');
-
+ 
   const acList=S.aircraft.map(a=>`- ${a.reg} type=${a.type} vitesse=${a.spd||'N0110'} niveau=${a.lvl||'VFR'} PBN=${a.pbn||'B2'} kts=${a.kts||110}`).join('\n')||'Aucun aéronef';
   const apList=Object.entries(AP).map(([k,v])=>`${k}:${v.n}`).join(', ');
-
+ 
   const sys=`Tu es l'assistant IA d'une app de plan de vol OACI pour pilote privé francophone.
 Aéronefs enregistrés:
 ${acList}
-
+ 
 Aérodromes connus (ICAO:nom): ${apList}
-
+ 
 Analyse la commande du pilote et réponds UNIQUEMENT en JSON valide, sans markdown, sans explication:
 {
   "action": "create_fpl" | "cancel_last" | "info" | "unknown",
@@ -1064,34 +1064,34 @@ Analyse la commande du pilote et réponds UNIQUEMENT en JSON valide, sans markdo
   }
 }
 Règles: si le pilote dit 'en RV8' c'est le type d'avion. Si un seul avion est enregistré et aucun n'est précisé, aircraft_reg=null. 'demain' = date_offset:1, 'après-demain'=2. Si l'heure n'est pas dite: eobt=null.`;
-
+ 
   try{
-    const resp=await fetch('/.netlify/functions/claude-proxy',{
+    const resp=await fetch('https://fpl-proxy.xpicpicfamily.workers.dev',{
       method:'POST',
       headers:{'Content-Type':'application/json','x-api-key':S.apiKey},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:512,system:sys,messages:[{role:'user',content:'Commande: "'+transcript+'"'}]})
+      body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:512,system:sys,messages:[{role:'user',content:'Commande: "'+transcript+'"'}]})
     });
     if(!resp.ok){const e=await resp.json().catch(()=>({}));throw new Error(e.error?.message||'API '+resp.status);}
     const data=await resp.json();
     let raw=data.content[0].text.trim();
     let parsed;
     try{parsed=JSON.parse(raw);}catch(e){const m=raw.match(/\{[\s\S]*\}/);if(m)parsed=JSON.parse(m[0]);else throw new Error('JSON invalide');}
-
+ 
     stopVoice();
     $('ai-reply').textContent='🤖 '+parsed.reply;$('ai-reply').classList.add('show');
     $('mic-main').classList.add('ok');
     setTimeout(()=>$('mic-main').classList.remove('ok'),2000);
-
+ 
     if(parsed.action==='create_fpl'&&parsed.fpl) applyFPL(parsed.fpl);
     else if(parsed.action==='cancel_last') showToast('ℹ️ Pour annuler, utilisez la liste des plans');
-
+ 
   }catch(err){
     stopVoice();
     $('ai-reply').textContent='❌ '+err.message;$('ai-reply').classList.add('show');
     showToast('❌ IA: '+err.message.slice(0,40));
   }
 }
-
+ 
 // ─── APPLIQUER DANS LE FORMULAIRE ───────────────────
 function applyFPL(fpl){
   goTab('nouveau');
@@ -1104,43 +1104,43 @@ function applyFPL(fpl){
     }
     if(!ac&&S.aircraft.length===1)ac=S.aircraft[0];
     if(ac){selAC(ac.id);showToast('✈️ '+ac.reg+' sélectionné');}
-
+ 
     // Règle de vol
     if(fpl.rule){const b=document.querySelector('.rule-btn[data-rule="'+fpl.rule+'"]');if(b)selRule(b);}
-
+ 
     // Date
     const d=new Date();d.setDate(d.getDate()+(fpl.date_offset||0));
     $('f_date').value=d.toISOString().split('T')[0];
-
+ 
     // EOBT
     if(fpl.eobt){$('f_eobt').value=fpl.eobt.slice(0,2)+':'+fpl.eobt.slice(2,4);}
     else{const n=new Date();n.setMinutes(n.getMinutes()+30);$('f_eobt').value=n.toTimeString().slice(0,5);}
-
+ 
     // ADEP
     if(fpl.adep){const e=$('f_adep');e.value=fpl.adep;e.classList.add('ai-filled');onAdepChange();}
-
+ 
     // ADES
     if(fpl.ades){const e=$('f_ades');e.value=fpl.ades;e.classList.add('ai-filled');onAdesChange();}
-
+ 
     // Route
     if(fpl.route){const e=$('f_route');e.value=fpl.route;e.classList.add('ai-filled');}
-
+ 
     // Vitesse + niveau depuis IA ou depuis aéronef
     const cur=S.selAC;
     if(fpl.speed){const e=$('f_speed');e.value=fpl.speed;e.classList.add('ai-filled');}
     else if(cur?.spd&&!$('f_speed').value){const e=$('f_speed');e.value=cur.spd;e.classList.add('ac-filled');}
     if(fpl.level){const e=$('f_level');e.value=fpl.level;e.classList.add('ai-filled');}
     else if(cur?.lvl&&!$('f_level').value){const e=$('f_level');e.value=cur.lvl;e.classList.add('ac-filled');}
-
+ 
     // Pilote auto
     if(S.pilot.name)$('f_pic').value=S.pilot.name;
     if(S.pilot.tel)$('f_tel').value=S.pilot.tel;
-
+ 
     computeFIR();
     showToast('✅ Formulaire rempli — vérifiez et générez !');
   },200);
 }
-
+ 
 // ════════════════════════════════════════════════════════
 // MISC
 // ════════════════════════════════════════════════════════
@@ -1149,8 +1149,9 @@ function showToast(msg){
   const t=$('toast');t.textContent=msg;t.classList.add('show');
   clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2800);
 }
-
+ 
 init();
 </script>
 </body>
 </html>
+ 
