@@ -240,7 +240,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
       <div class="rule-btn" data-rule="Y" onclick="selRule(this)">Y<small>IFR→VFR</small></div>
       <div class="rule-btn" data-rule="Z" onclick="selRule(this)">Z<small>VFR→IFR</small></div>
     </div>
-    <div id="rule-hint" class="hint">VFR pur → dépôt Olivia/DGAC</div>
+    <div id="rule-hint" class="hint">VFR pur → dépôt SOFIA/DGAC</div>
   </div>
 
   <div class="section">
@@ -372,14 +372,14 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     <div class="sep-row"><span>Dépôt</span></div>
     <div id="deposit-vfr" style="display:none">
       <div class="card" style="background:rgba(255,179,64,.06);border-color:rgba(255,179,64,.25);margin-bottom:10px">
-        <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:6px">⚠️ VFR pur — Olivia DGAC</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;font-family:var(--mono)">Autorouter ne supporte pas les VFR purs. Le FPL sera copié dans le presse-papier et Olivia s'ouvrira.</div>
+        <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:6px">⚠️ VFR pur — SOFIA DGAC</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;font-family:var(--mono)">Autorouter ne supporte pas les VFR purs. Le FPL sera copié dans le presse-papier et SOFIA s'ouvrira.</div>
       </div>
-      <button class="btn btn-amber" onclick="depositVFR()">✈️ Copier FPL + Ouvrir Olivia</button>
-      <div id="olivia-link-box" style="display:none;margin-top:12px;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.25);border-radius:var(--r);padding:16px;text-align:center">
+      <button class="btn btn-amber" onclick="depositVFR()">✈️ Copier FPL + Ouvrir SOFIA</button>
+      <div id="sofia-link-box" style="display:none;margin-top:12px;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.25);border-radius:var(--r);padding:16px;text-align:center">
         <div style="font-size:13px;color:var(--green);font-weight:700;margin-bottom:8px">✅ FPL copié dans le presse-papier !</div>
-        <div style="font-size:12px;color:var(--text2);font-family:var(--mono);margin-bottom:14px;line-height:1.6">Appuyez sur le bouton ci-dessous pour ouvrir Olivia,<br>puis collez le FPL (appui long → Coller)</div>
-        <a href="https://olivia.aviation-civile.gouv.fr" target="_blank" style="display:block;background:var(--amber);color:var(--bg);font-family:var(--font);font-size:15px;font-weight:700;padding:14px;border-radius:var(--r);text-decoration:none;text-align:center">🌐 Ouvrir Olivia DGAC</a>
+        <div style="font-size:12px;color:var(--text2);font-family:var(--mono);margin-bottom:14px;line-height:1.6">Appuyez sur le bouton ci-dessous pour ouvrir SOFIA,<br>puis collez le FPL (appui long → Coller)</div>
+        <a href="https://sofia-briefing.aviation-civile.gouv.fr/" target="_blank" style="display:block;background:var(--amber);color:var(--bg);font-family:var(--font);font-size:15px;font-weight:700;padding:14px;border-radius:var(--r);text-decoration:none;text-align:center">🌐 Ouvrir SOFIA DGAC</a>
       </div>
     </div>
     <div id="deposit-ifr" style="display:none">
@@ -449,7 +449,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     <div style="font-size:13px;line-height:1.9;color:var(--text2);font-family:var(--mono)">
       <p><span class="tag tag-purple">IA</span> Clé API Anthropic → <span style="color:var(--text)">console.anthropic.com</span></p>
       <p><span class="tag tag-blue">IFR/Y/Z</span> Compte Autorouter → <span style="color:var(--text)">autorouter.aero</span></p>
-      <p><span class="tag tag-amber">VFR</span> Olivia DGAC → <span style="color:var(--text)">olivia.aviation-civile.gouv.fr</span></p>
+      <p><span class="tag tag-amber">VFR</span> SOFIA DGAC → <span style="color:var(--text)">sofia-briefing.aviation-civile.gouv.fr</span></p>
     </div>
   </div>
   <div class="pb"></div>
@@ -751,7 +751,7 @@ function delAC(id){
 function selRule(el){
   document.querySelectorAll('.rule-btn').forEach(b=>b.classList.remove('on'));
   el.classList.add('on');S.rule=el.dataset.rule;
-  const h={V:'VFR pur → dépôt Olivia/DGAC',I:'IFR → dépôt Autorouter (IFPS Eurocontrol)',Y:'IFR puis VFR → dépôt Autorouter',Z:'VFR puis IFR → dépôt Autorouter'};
+  const h={V:'VFR pur → dépôt SOFIA/DGAC',I:'IFR → dépôt Autorouter (IFPS Eurocontrol)',Y:'IFR puis VFR → dépôt Autorouter',Z:'VFR puis IFR → dépôt Autorouter'};
   $('rule-hint').textContent=h[S.rule];
 }
 
@@ -848,8 +848,8 @@ function depositVFR(){
   S.plans.unshift({id:'—',date:new Date().toISOString(),adep:S.genFPL.adep,ades:S.genFPL.ades,rule:S.rule,ac:S.genFPL.ac.reg,fpl:S.genFPL.fpl,status:'local',eobt:S.genFPL.eobt,flightDate:$('f_date').value});
   save();renderPlans();
   // Afficher le lien cliquable
-  $('olivia-link-box').style.display='block';
-  $('olivia-link-box').scrollIntoView({behavior:'smooth'});
+  $('sofia-link-box').style.display='block';
+  $('sofia-link-box').scrollIntoView({behavior:'smooth'});
 }
 async function filePlan(){
   const user=$('ar_user').value.trim()||S.ar.user,pass=$('ar_pass').value.trim()||S.ar.pass;
