@@ -192,6 +192,10 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
 
 <!-- ════ PLANS ════ -->
 <div class="screen active" id="screen-plans">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <div class="section-title" style="margin:0;flex:1">Plans actifs</div>
+    <button onclick="clearCancelled()" style="font-size:11px;font-family:var(--mono);color:var(--red);background:transparent;border:1px solid rgba(255,95,95,.3);border-radius:20px;padding:4px 12px;cursor:pointer">🗑 Effacer annulés</button>
+  </div>
   <div id="plans-list"><div class="empty"><div class="icon">📋</div><p>Aucun plan pour l'instant.<br>Utilisez <b>+ Nouveau</b> pour créer un plan.</p></div></div>
   <div class="pb"></div>
 </div>
@@ -323,7 +327,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
       <div class="chips" id="chips-emergency">
         <div class="chip" data-v="UHF" onclick="togChip(this)">UHF</div>
         <div class="chip" data-v="VHF" onclick="togChip(this)">VHF</div>
-        <div class="chip on" data-v="ELBA" onclick="togChip(this)">ELBA</div>
+        <div class="chip" data-v="ELBA" onclick="togChip(this)">ELBA</div>
       </div>
     </div>
     <div class="field"><label>Survie</label>
@@ -331,7 +335,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
         <div class="chip" data-v="P" onclick="togChip(this)">Polaire</div>
         <div class="chip" data-v="D" onclick="togChip(this)">Désert</div>
         <div class="chip" data-v="M" onclick="togChip(this)">Maritime</div>
-        <div class="chip on" data-v="J" onclick="togChip(this)">Jungle</div>
+        <div class="chip" data-v="J" onclick="togChip(this)">Jungle</div>
       </div>
     </div>
   </div>
@@ -371,16 +375,16 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     <div class="fpl-box" id="fpl-preview"></div>
     <div class="sep-row"><span>Dépôt</span></div>
     <div id="deposit-vfr" style="display:none">
-      <div class="card" style="background:rgba(255,179,64,.06);border-color:rgba(255,179,64,.25);margin-bottom:10px">
-        <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:6px">⚠️ VFR pur — SOFIA DGAC</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.6;font-family:var(--mono)">Autorouter ne supporte pas les VFR purs. Le FPL sera copié dans le presse-papier et SOFIA s'ouvrira.</div>
+      <div class="card" style="background:rgba(74,158,255,.06);border-color:rgba(74,158,255,.25);margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:6px">ℹ️ Plan VFR — dépôt Autorouter</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.6;font-family:var(--mono)">Le plan sera déposé via Autorouter qui le transmet à l'IFPS Eurocontrol.</div>
       </div>
-      <button class="btn btn-amber" onclick="depositVFR()">✈️ Copier FPL + Ouvrir SOFIA</button>
-      <div id="sofia-link-box" style="display:none;margin-top:12px;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.25);border-radius:var(--r);padding:16px;text-align:center">
-        <div style="font-size:13px;color:var(--green);font-weight:700;margin-bottom:8px">✅ FPL copié dans le presse-papier !</div>
-        <div style="font-size:12px;color:var(--text2);font-family:var(--mono);margin-bottom:14px;line-height:1.6">Appuyez sur le bouton ci-dessous pour ouvrir SOFIA,<br>puis collez le FPL (appui long → Coller)</div>
-        <a href="https://sofia-briefing.aviation-civile.gouv.fr/" target="_blank" style="display:block;background:var(--amber);color:var(--bg);font-family:var(--font);font-size:15px;font-weight:700;padding:14px;border-radius:var(--r);text-decoration:none;text-align:center">🌐 Ouvrir SOFIA DGAC</a>
-      </div>
+      <div class="field"><label>Email Autorouter <span class="badge-auto">auto depuis paramètres</span></label><input type="text" id="ar_user_vfr" placeholder="votre@email.com"></div>
+      <div class="field"><label>Mot de passe Autorouter</label><input type="text" id="ar_pass_vfr" placeholder="••••••••"></div>
+      <div class="loader" id="filing-loader-vfr"><div class="spinner"></div>En cours…</div>
+      <div class="result-box result-ok" id="result-ok-vfr"><div class="rtitle">✅ Plan déposé</div><p id="result-ok-msg-vfr"></p></div>
+      <div class="result-box result-err" id="result-err-vfr"><div class="rtitle">❌ Erreur</div><p id="result-err-msg-vfr"></p></div>
+      <button class="btn btn-green" id="btn-file-vfr" onclick="filePlanVFR()">🚀 Déposer via Autorouter</button>
     </div>
     <div id="deposit-ifr" style="display:none">
       <div class="field"><label>Email Autorouter <span class="badge-auto">auto depuis paramètres</span></label><input type="text" id="ar_user" placeholder="votre@email.com"></div>
@@ -449,7 +453,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.5}
     <div style="font-size:13px;line-height:1.9;color:var(--text2);font-family:var(--mono)">
       <p><span class="tag tag-purple">IA</span> Clé API Anthropic → <span style="color:var(--text)">console.anthropic.com</span></p>
       <p><span class="tag tag-blue">IFR/Y/Z</span> Compte Autorouter → <span style="color:var(--text)">autorouter.aero</span></p>
-      <p><span class="tag tag-amber">VFR</span> SOFIA DGAC → <span style="color:var(--text)">sofia-briefing.aviation-civile.gouv.fr</span></p>
+      <p><span class="tag tag-amber">VFR</span> → Autorouter (même compte que IFR)</p>
     </div>
   </div>
   <div class="pb"></div>
@@ -569,8 +573,8 @@ function init(){
   $('f_eobt').value=now.toTimeString().slice(0,5);
   if(S.pilot.name){$('f_pic').value=S.pilot.name;$('s_pic').value=S.pilot.name;}
   if(S.pilot.tel){$('f_tel').value=S.pilot.tel;$('s_tel').value=S.pilot.tel;}
-  if(S.ar.user){$('ar_user').value=S.ar.user;$('s_ar_user').value=S.ar.user;}
-  if(S.ar.pass){$('ar_pass').value=S.ar.pass;$('s_ar_pass').value=S.ar.pass;}
+  if(S.ar.user){$('ar_user').value=S.ar.user;$('s_ar_user').value=S.ar.user;$('ar_user_vfr').value=S.ar.user;}
+  if(S.ar.pass){$('ar_pass').value=S.ar.pass;$('s_ar_pass').value=S.ar.pass;$('ar_pass_vfr').value=S.ar.pass;}
   if(S.apiKey)$('s_apikey').value=S.apiKey;
   renderAeronefsList();renderACSelector();renderPlans();
   getGPS();
@@ -841,15 +845,34 @@ function generateFPL(){
 // ════════════════════════════════════════════════════════
 // DÉPÔT
 // ════════════════════════════════════════════════════════
-function depositVFR(){
-  if(!S.genFPL)return;
-  try{navigator.clipboard.writeText(S.genFPL.fpl);showToast('📋 FPL copié !');}catch(e){}
-  // Enregistrer localement
-  S.plans.unshift({id:'—',date:new Date().toISOString(),adep:S.genFPL.adep,ades:S.genFPL.ades,rule:S.rule,ac:S.genFPL.ac.reg,fpl:S.genFPL.fpl,status:'local',eobt:S.genFPL.eobt,flightDate:$('f_date').value});
-  save();renderPlans();
-  // Afficher le lien cliquable
-  $('sofia-link-box').style.display='block';
-  $('sofia-link-box').scrollIntoView({behavior:'smooth'});
+function depositVFR(){} // plus utilisé
+
+async function filePlanVFR(){
+  const user=$('ar_user_vfr').value.trim()||S.ar.user;
+  const pass=$('ar_pass_vfr').value.trim()||S.ar.pass;
+  if(!user||!pass){showToast('⚠️ Identifiants Autorouter requis (⚙️)');return;}
+  if(!S.genFPL){showToast('⚠️ Générez d\'abord le FPL');return;}
+  const lo=$('filing-loader-vfr'),bf=$('btn-file-vfr'),ok=$('result-ok-vfr'),er=$('result-err-vfr');
+  ok.classList.remove('show');er.classList.remove('show');lo.classList.add('show');bf.disabled=true;
+  try{
+    const ar=await fetch('https://api.autorouter.aero/v1.0/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({login:user,password:pass})});
+    if(!ar.ok)throw new Error('Auth échouée — vérifiez vos identifiants Autorouter');
+    const at=await ar.json(),token=at.token||at.access_token;
+    if(!token)throw new Error('Token non reçu');
+    const fr=await fetch('https://api.autorouter.aero/v1.0/flightplan/file',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({fpl:S.genFPL.fpl,briefingpack:[]})});
+    if(!fr.ok){const e=await fr.json().catch(()=>({}));throw new Error(e.message||'HTTP '+fr.status);}
+    const fd=await fr.json();
+    lo.classList.remove('show');ok.classList.add('show');
+    const pid=fd.id||fd.flightplanid||'—';
+    $('result-ok-msg-vfr').textContent='Plan VFR déposé ✓\nID: '+pid+'\nAutorouter notifié.';
+    S.plans.unshift({id:pid,date:new Date().toISOString(),adep:S.genFPL.adep,ades:S.genFPL.ades,rule:S.rule,ac:S.genFPL.ac.reg,fpl:S.genFPL.fpl,status:'filed',eobt:S.genFPL.eobt,flightDate:$('f_date').value});
+    save();renderPlans();showToast('✅ Plan VFR déposé !');
+  }catch(err){
+    lo.classList.remove('show');er.classList.add('show');
+    $('result-err-msg-vfr').textContent=err.message;
+    showToast('❌ '+err.message.slice(0,40));
+  }
+  bf.disabled=false;
 }
 async function filePlan(){
   const user=$('ar_user').value.trim()||S.ar.user,pass=$('ar_pass').value.trim()||S.ar.pass;
@@ -943,6 +966,14 @@ function renderPlans(){
         ${cancelBtn}
       </div></div>`;
   }).join('');
+}
+
+function clearCancelled(){
+  const count=S.plans.filter(p=>p.status==='cancelled').length;
+  if(!count){showToast('Aucun plan annulé à effacer');return;}
+  if(!confirm('Effacer les '+count+' plan(s) annulé(s) ?'))return;
+  S.plans=S.plans.filter(p=>p.status!=='cancelled');
+  save();renderPlans();showToast('🗑 Plans annulés effacés');
 }
 
 function copyPlan(i){try{navigator.clipboard.writeText(S.plans[i].fpl);showToast('📋 FPL copié !');}catch(e){}}
